@@ -13,9 +13,20 @@ namespace Runtime.Bakers
             
             AddComponent<PlayerTag>(playerEntity);
             
-            AddComponent(playerEntity, new PlayerMovementData(playerAuthoring.MovementSpeed));
-            AddComponent(playerEntity, new PlayerRotationData(playerAuthoring.RotationSpeed));
-            AddComponent(playerEntity, new PlayerShootingData(playerAuthoring.FireRate));
+            AddComponent<PlayerInputData>(playerEntity);
+            
+            AddComponent(playerEntity, new PlayerMovementData()
+            {
+                MovementSpeed = playerAuthoring.MovementSpeed
+            });
+            AddComponent(playerEntity, new PlayerRotationData()
+            {
+                RotationSpeed = playerAuthoring.RotationSpeed
+            });
+            AddComponent(playerEntity, new PlayerShootingData()
+            {
+                FireRate = playerAuthoring.FireRate
+            });
         }
         #endregion
     }

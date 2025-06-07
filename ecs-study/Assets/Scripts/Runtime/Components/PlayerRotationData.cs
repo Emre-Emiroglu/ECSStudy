@@ -2,14 +2,10 @@
 
 namespace Runtime.Components
 {
-    public readonly struct PlayerRotationData : IComponentData
+    public struct PlayerRotationData : IComponentData
     {
         #region Fields
-        private readonly float _rotationSpeed;
-        #endregion
-
-        #region Constructor
-        public PlayerRotationData(float rotationSpeed) => _rotationSpeed = rotationSpeed;
+        public float RotationSpeed;
         #endregion
     }
 }
