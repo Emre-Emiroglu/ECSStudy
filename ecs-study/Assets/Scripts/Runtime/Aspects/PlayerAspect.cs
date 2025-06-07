@@ -1,17 +1,19 @@
 ﻿using Runtime.Components;
 using Unity.Entities;
+using Unity.Transforms;
 
 namespace Runtime.Aspects
 {
     public readonly partial struct PlayerAspect : IAspect
     {
         #region Fields
-        private readonly Entity _playerEntity;
-        private readonly RefRO<PlayerTag> _playerTag;
-        private readonly RefRO<PlayerInputData> _playerInputData;
-        private readonly RefRO<PlayerMovementData> _playerMovementData;
-        private readonly RefRO<PlayerRotationData> _playerRotationData;
-        private readonly RefRO<PlayerShootingData> _playerShootingData;
+        public readonly Entity PlayerEntity;
+        public readonly RefRO<PlayerTag> PlayerTag;
+        public readonly RefRO<PlayerInputData> PlayerInputData;
+        public readonly RefRO<PlayerMovementData> PlayerMovementData;
+        public readonly RefRO<PlayerRotationData> PlayerRotationData;
+        public readonly RefRO<PlayerShootingData> PlayerShootingData;
+        public readonly RefRW<LocalTransform> LocalTransform;
         #endregion
     }
 }

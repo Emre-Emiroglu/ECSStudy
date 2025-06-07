@@ -30,7 +30,7 @@ namespace Runtime.Systems
             float3 movementDirection = new float3(movementValue.x, 0f, movementValue.y);
             float3 rotationDirection = new float3(rotationValue.x, 0f, rotationValue.y);
 
-            SystemAPI.SetSingleton(new PlayerInputData()
+            SystemAPI.SetSingleton(new PlayerInputData
             {
                 MovementDirection = movementDirection,
                 RotationDirection = rotationDirection
