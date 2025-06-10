@@ -25,6 +25,14 @@ namespace Runtime.Systems
             {
                 float speed = playerAspect.PlayerRotationData.ValueRO.RotationSpeed;
                 
+                float3 playerPos = playerAspect.LocalTransform.ValueRO.Position;
+                
+                float3 lookDir = math.normalize(rotationDirection - playerPos);
+
+                quaternion targetRot = quaternion.LookRotationSafe(new float3(lookDir.x, 0, lookDir.z), math.up());
+                quaternion currentRot = playerAspect.LocalTransform.ValueRO.Rotation;
+
+                playerAspect.LocalTransform.ValueRW.Rotation = math.slerp(currentRot, targetRot, deltaTime * speed);
             }
         }
         #endregion

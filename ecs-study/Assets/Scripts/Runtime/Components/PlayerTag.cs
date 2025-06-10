@@ -2,5 +2,5 @@
 
 namespace Runtime.Components
 {
-    public readonly struct PlayerTag : IComponentData { }
+    public struct PlayerTag : IComponentData { }
 }

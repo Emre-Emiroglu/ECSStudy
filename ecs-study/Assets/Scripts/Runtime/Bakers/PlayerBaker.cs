@@ -12,18 +12,17 @@ namespace Runtime.Bakers
             Entity playerEntity = GetEntity(TransformUsageFlags.Dynamic);
             
             AddComponent<PlayerTag>(playerEntity);
-            
             AddComponent<PlayerInputData>(playerEntity);
             
-            AddComponent(playerEntity, new PlayerMovementData()
+            AddComponent(playerEntity, new PlayerMovementData
             {
                 MovementSpeed = playerAuthoring.MovementSpeed
             });
-            AddComponent(playerEntity, new PlayerRotationData()
+            AddComponent(playerEntity, new PlayerRotationData
             {
                 RotationSpeed = playerAuthoring.RotationSpeed
             });
-            AddComponent(playerEntity, new PlayerShootingData()
+            AddComponent(playerEntity, new PlayerShootingData
             {
                 FireRate = playerAuthoring.FireRate
             });

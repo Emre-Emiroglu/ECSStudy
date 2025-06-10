@@ -1,4 +1,6 @@
-﻿using Runtime.Components;
+﻿using Runtime.Aspects;
+using Runtime.Authorings;
+using Runtime.Components;
 using Runtime.Input;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -14,27 +16,23 @@ namespace Runtime.Systems
         #endregion
 
         #region Core
-        protected override void OnCreate()
-        {
-            _inputActions = new InputActions();
-            
-            RequireForUpdate<PlayerInputData>();
-        }
+        protected override void OnCreate() => _inputActions = new InputActions();
         protected override void OnStartRunning() => _inputActions.Enable();
         protected override void OnStopRunning() => _inputActions.Disable();
         protected override void OnUpdate()
         {
             Vector2 movementValue = _inputActions.PC.Movement.ReadValue<Vector2>();
-            Vector2 rotationValue = _inputActions.PC.Rotation.ReadValue<Vector2>();
             
             float3 movementDirection = new float3(movementValue.x, 0f, movementValue.y);
-            float3 rotationDirection = new float3(rotationValue.x, 0f, rotationValue.y);
-
-            SystemAPI.SetSingleton(new PlayerInputData
+            float3 rotationDirection = MouseWorldPositionCalculator.MouseWorldPosition;
+            
+            foreach (PlayerAspect playerAspect in SystemAPI.Query<PlayerAspect>().WithAll<PlayerTag>())
             {
-                MovementDirection = movementDirection,
-                RotationDirection = rotationDirection
-            });
+                playerAspect.PlayerInputData.ValueRW.MovementDirection = movementDirection;
+                playerAspect.PlayerInputData.ValueRW.RotationDirection = rotationDirection;
+                
+                SystemAPI.SetSingleton(playerAspect.PlayerInputData.ValueRO);
+            }
         }
         #endregion
     }
