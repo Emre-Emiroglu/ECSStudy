@@ -6,6 +6,8 @@ using Unity.Mathematics;
 
 namespace Runtime.Systems
 {
+    [BurstCompile]
+    [UpdateInGroup(typeof(SimulationSystemGroup))]
     public partial struct PlayerRotationSystem : ISystem
     {
         #region Core

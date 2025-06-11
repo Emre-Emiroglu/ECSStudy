@@ -110,6 +110,15 @@ namespace Runtime.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""7aadd76b-b3ee-4921-bb9f-ee9b33fa3509"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +187,17 @@ namespace Runtime.Input
                     ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a0a656a-0b4e-4abf-8338-8640a963677b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +208,7 @@ namespace Runtime.Input
             m_PC = asset.FindActionMap("PC", throwIfNotFound: true);
             m_PC_Movement = m_PC.FindAction("Movement", throwIfNotFound: true);
             m_PC_Rotation = m_PC.FindAction("Rotation", throwIfNotFound: true);
+            m_PC_Shoot = m_PC.FindAction("Shoot", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -270,6 +291,7 @@ namespace Runtime.Input
         private List<IPCActions> m_PCActionsCallbackInterfaces = new List<IPCActions>();
         private readonly InputAction m_PC_Movement;
         private readonly InputAction m_PC_Rotation;
+        private readonly InputAction m_PC_Shoot;
         /// <summary>
         /// Provides access to input actions defined in input action map "PC".
         /// </summary>
@@ -289,6 +311,10 @@ namespace Runtime.Input
             /// Provides access to the underlying input action "PC/Rotation".
             /// </summary>
             public InputAction @Rotation => m_Wrapper.m_PC_Rotation;
+            /// <summary>
+            /// Provides access to the underlying input action "PC/Shoot".
+            /// </summary>
+            public InputAction @Shoot => m_Wrapper.m_PC_Shoot;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -321,6 +347,9 @@ namespace Runtime.Input
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
 
             /// <summary>
@@ -338,6 +367,9 @@ namespace Runtime.Input
                 @Rotation.started -= instance.OnRotation;
                 @Rotation.performed -= instance.OnRotation;
                 @Rotation.canceled -= instance.OnRotation;
+                @Shoot.started -= instance.OnShoot;
+                @Shoot.performed -= instance.OnShoot;
+                @Shoot.canceled -= instance.OnShoot;
             }
 
             /// <summary>
@@ -392,6 +424,13 @@ namespace Runtime.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnRotation(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnShoot(InputAction.CallbackContext context);
         }
     }
 }

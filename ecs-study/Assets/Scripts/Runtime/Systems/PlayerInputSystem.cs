@@ -1,5 +1,4 @@
 ﻿using Runtime.Aspects;
-using Runtime.Authorings;
 using Runtime.Components;
 using Runtime.Input;
 using Unity.Entities;
@@ -25,11 +24,14 @@ namespace Runtime.Systems
             
             float3 movementDirection = new float3(movementValue.x, 0f, movementValue.y);
             float3 rotationDirection = MouseWorldPositionCalculator.MouseWorldPosition;
+
+            bool isShooting = _inputActions.PC.Shoot.IsPressed();
             
             foreach (PlayerAspect playerAspect in SystemAPI.Query<PlayerAspect>().WithAll<PlayerTag>())
             {
                 playerAspect.PlayerInputData.ValueRW.MovementDirection = movementDirection;
                 playerAspect.PlayerInputData.ValueRW.RotationDirection = rotationDirection;
+                playerAspect.PlayerInputData.ValueRW.IsShooting = isShooting;
                 
                 SystemAPI.SetSingleton(playerAspect.PlayerInputData.ValueRO);
             }

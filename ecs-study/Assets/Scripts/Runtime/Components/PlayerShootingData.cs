@@ -6,6 +6,7 @@ namespace Runtime.Components
     {
         #region Fields
         public float FireRate;
+        public Entity BulletEntity;
         #endregion
     }
 }

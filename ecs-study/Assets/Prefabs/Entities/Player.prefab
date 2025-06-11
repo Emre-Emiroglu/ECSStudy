@@ -48,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   rotationSpeed: 30
-  fireRate: 0.1
+  fireRate: 0.125
+  bulletPrefab: {fileID: 7276979320003000713, guid: 7c24d9c780536db4b87a88f7c98501fd, type: 3}
 --- !u!1 &3593095001929800058
 GameObject:
   m_ObjectHideFlags: 0

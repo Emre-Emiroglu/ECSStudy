@@ -9,12 +9,14 @@ namespace Runtime.Authorings
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSpeed;
         [SerializeField] private float fireRate;
+        [SerializeField] private GameObject bulletPrefab;
         #endregion
 
         #region Getters
         public float MovementSpeed => movementSpeed;
         public float RotationSpeed => rotationSpeed;
         public float FireRate => fireRate;
+        public GameObject BulletPrefab => bulletPrefab;
         #endregion
     }
 }

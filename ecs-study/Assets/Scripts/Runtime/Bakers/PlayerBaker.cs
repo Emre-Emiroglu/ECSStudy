@@ -24,7 +24,8 @@ namespace Runtime.Bakers
             });
             AddComponent(playerEntity, new PlayerShootingData
             {
-                FireRate = playerAuthoring.FireRate
+                FireRate = playerAuthoring.FireRate,
+                BulletEntity =  GetEntity(playerAuthoring.BulletPrefab, TransformUsageFlags.Dynamic)
             });
         }
         #endregion

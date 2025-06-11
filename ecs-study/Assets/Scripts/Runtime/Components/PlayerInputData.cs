@@ -8,6 +8,7 @@ namespace Runtime.Components
         #region Fields
         public float3 MovementDirection;
         public float3 RotationDirection;
+        public bool IsShooting;
         #endregion
     }
 }
