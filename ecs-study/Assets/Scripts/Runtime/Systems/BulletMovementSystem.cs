@@ -1,8 +1,8 @@
-﻿using Runtime.Components;
+﻿using Runtime.Aspects;
+using Runtime.Components;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Transforms;
 
 namespace Runtime.Systems
 {
@@ -18,17 +18,18 @@ namespace Runtime.Systems
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
             
-            foreach ((RefRW<LocalTransform> transform, RefRW<BulletMovementData> movementData) in 
-                     SystemAPI.Query<RefRW<LocalTransform>, RefRW<BulletMovementData>>()
-                         .WithAll<BulletTag>())
+            foreach (BulletAspect bulletAspect in SystemAPI.Query<BulletAspect>().WithAll<BulletTag>())
             {
-                if (movementData.ValueRO.Velocity.Equals(float3.zero))
+                if (bulletAspect.BulletMovementData.ValueRO.Velocity.Equals(float3.zero))
                 {
-                    float3 forward = math.forward(transform.ValueRO.Rotation);
-                    movementData.ValueRW.Velocity = forward * movementData.ValueRO.Speed;
+                    float3 forward = math.forward(bulletAspect.LocalTransform.ValueRO.Rotation);
+
+                    bulletAspect.BulletMovementData.ValueRW.Velocity =
+                        forward * bulletAspect.BulletMovementData.ValueRO.Speed;
                 }
-                
-                transform.ValueRW.Position += movementData.ValueRO.Velocity * deltaTime;
+
+                bulletAspect.LocalTransform.ValueRW.Position +=
+                    bulletAspect.BulletMovementData.ValueRO.Velocity * deltaTime;
             }
         }
         #endregion

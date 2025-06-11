@@ -13,9 +13,14 @@ namespace Runtime.Bakers
             
             AddComponent<BulletTag>(bulletEntity);
 
-            AddComponent(bulletEntity, new BulletMovementData()
+            AddComponent(bulletEntity, new BulletMovementData
             {
                 Speed = authoring.Speed
+            });
+            
+            AddComponent(bulletEntity, new BulletLifetimeData
+            {
+                Lifetime = authoring.Lifetime
             });
         }
         #endregion
