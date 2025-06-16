@@ -6,7 +6,7 @@ namespace Runtime.Components
     public struct BulletMovementData : IComponentData
     {
         #region Fields
-        public float Speed;
+        public float MovementSpeed;
         public float3 Velocity;
         #endregion
     }

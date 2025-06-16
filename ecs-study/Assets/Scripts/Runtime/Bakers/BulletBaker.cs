@@ -15,12 +15,12 @@ namespace Runtime.Bakers
 
             AddComponent(bulletEntity, new BulletMovementData
             {
-                Speed = authoring.Speed
+                MovementSpeed = authoring.MovementSpeed
             });
             
-            AddComponent(bulletEntity, new BulletLifetimeData
+            AddComponent(bulletEntity, new BulletAutoDestroyData
             {
-                Lifetime = authoring.Lifetime
+                AutoDestroyDuration = authoring.AutoDestroyDuration
             });
         }
         #endregion

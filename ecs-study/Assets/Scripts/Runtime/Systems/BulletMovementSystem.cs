@@ -25,7 +25,7 @@ namespace Runtime.Systems
                     float3 forward = math.forward(bulletAspect.LocalTransform.ValueRO.Rotation);
 
                     bulletAspect.BulletMovementData.ValueRW.Velocity =
-                        forward * bulletAspect.BulletMovementData.ValueRO.Speed;
+                        forward * bulletAspect.BulletMovementData.ValueRO.MovementSpeed;
                 }
 
                 bulletAspect.LocalTransform.ValueRW.Position +=

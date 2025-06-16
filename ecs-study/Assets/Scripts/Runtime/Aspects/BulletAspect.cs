@@ -10,7 +10,7 @@ namespace Runtime.Aspects
         public readonly Entity BulletEntity;
         public readonly RefRO<BulletTag> BulletTag;
         public readonly RefRW<BulletMovementData> BulletMovementData;
-        public readonly RefRW<BulletLifetimeData> BulletLifetimeData;
+        public readonly RefRW<BulletAutoDestroyData> BulletAutoDestroyData;
         public readonly RefRW<LocalTransform> LocalTransform;
         #endregion
     }

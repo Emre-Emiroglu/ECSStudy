@@ -9,7 +9,7 @@ namespace Runtime.Systems
     {
         #region Core
         [BurstCompile]
-        public void OnCreate(ref SystemState state) => state.RequireForUpdate<BulletLifetimeData>();
+        public void OnCreate(ref SystemState state) => state.RequireForUpdate<BulletAutoDestroyData>();
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
@@ -19,9 +19,9 @@ namespace Runtime.Systems
 
             foreach (BulletAspect bulletAspect in SystemAPI.Query<BulletAspect>().WithAll<BulletTag>())
             {
-                bulletAspect.BulletLifetimeData.ValueRW.Lifetime -= deltaTime;
+                bulletAspect.BulletAutoDestroyData.ValueRW.AutoDestroyDuration -= deltaTime;
 
-                if (bulletAspect.BulletLifetimeData.ValueRO.Lifetime <= 0f)
+                if (bulletAspect.BulletAutoDestroyData.ValueRO.AutoDestroyDuration <= 0f)
                 {
                     entityCommandBuffer.DestroyEntity(bulletAspect.BulletEntity);
                 }

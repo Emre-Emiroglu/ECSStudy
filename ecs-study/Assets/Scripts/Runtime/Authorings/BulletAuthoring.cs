@@ -6,13 +6,13 @@ namespace Runtime.Authorings
     {
         #region Fields
         [Header("Bullet Authoring Fields")]
-        [SerializeField] private float speed;
-        [SerializeField] private float lifetime;
+        [SerializeField] private float movementSpeed;
+        [SerializeField] private float autoDestroyDuration;
         #endregion
 
         #region Getters
-        public float Speed => speed;
-        public float Lifetime => lifetime;
+        public float MovementSpeed => movementSpeed;
+        public float AutoDestroyDuration => autoDestroyDuration;
         #endregion
     }
 }

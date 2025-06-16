@@ -2,10 +2,10 @@
 
 namespace Runtime.Components
 {
-    public struct BulletLifetimeData : IComponentData
+    public struct BulletAutoDestroyData : IComponentData
     {
         #region Fields
-        public float Lifetime;
+        public float AutoDestroyDuration;
         #endregion
     }
 }
